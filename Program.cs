@@ -1,0 +1,534 @@
+﻿using System.Net;
+using System.Runtime.CompilerServices;
+
+bool playAgain = true;
+while(playAgain)
+{
+    Console.Clear();
+    Console.WriteLine("Please pick which Euler problem you'd like to solve");
+    Console.WriteLine(@"
+    1. Multiples of 3 or 5
+    2. Even Fibonacci Numbers
+    3. Large Prime Factor
+    4. Large Palindrom Product
+    5. Smallest Mutiple
+    6. Sum Square Difference
+    7. 10001st Prime
+    8. Largest Product in a Series
+    9. Special Pythagorean Triplet
+    10. Summation of Primes
+    11. Largest Product in a Grid
+    12. Highly Divisible Triangular Number
+    13. Large Sum
+    14. Longest Collatz Sequence
+    15. Lattice Paths
+    16. Power Digit Sum
+    17. Number Letter Counts 
+    18. Maxium Path Sum 1
+    19. Counting Sundays
+    20. Factorial Digit Sum
+    21. Amicable Numbers
+    22. Names Scores
+    23. Non-Abundant Sums
+    24. Lexicographic Permutations
+    25. 1000-digit Fibonacci numbers
+    26. Reciprocal Cycles
+    27. Quadratic Primes
+    28. Number Spiral Diagonals
+    29. Distinct Powers
+    30. Digit 5th Powers
+    ");
+    // Get a valid choice
+    bool successful = false;
+    int choice = 0;
+    while(!successful)
+    {
+        successful = Int32.TryParse(Console.ReadLine(),out choice);
+        if(!successful)
+            Console.WriteLine("Please don't be stupid");
+    }
+    // switch it into a series of methods
+    switch(choice)
+    {
+        case 1:
+            Multiples_of_3_or_5();
+            break;
+        case 2:
+            Even_Fibonacci_Numbers();
+            break;
+        case 3:
+            Large_Prime_Factor();
+            break;
+        case 4:
+            Large_Palindrome_Product();
+            break;
+        case 5:
+            Smallest_Mutiple();
+            break;
+        case 6:
+            Sum_Square_Difference();
+            break;
+        case 7:
+            Prime_10001st();
+            break;
+        case 8:
+            Largest_Product_in_a_Series();
+            break;
+        case 9:
+            Special_Pythagorean_Triplet();
+            break;
+        case 10:
+            Summation_of_Primes();
+            break;
+        case 11:
+            Largest_Product_in_a_Grid();
+            break;
+        case 12:
+            Highly_Divisible_Triangular_Number();
+            break;
+        case 13:
+            Large_Sum();
+            break;
+        case 14:
+            Longest_Collatz_Sequence();
+            break;
+        case 15:
+            Lattice_Paths();
+            break;
+        case 16:
+            Power_Digit_Sum();
+            break;
+        case 17:
+            Number_Letter_Counts();
+            break;
+        case 18:
+            Maxium_Path_Sum_1();
+            break;
+        case 19:
+            Counting_Sundays();
+            break;
+        case 20:
+            Factorial_Digit_Sum();
+            break;
+        case 21:
+            Amicable_Numbers();
+            break;
+        case 22:
+            Names_Scores();
+            break;
+        case 23:
+            Non_Abundant_Sums();
+            break;
+        case 24:
+            Lexicographic_Permutations();
+            break;
+        case 25:
+            Digit_Fibonacci_numbers1000();
+            break;
+        case 26:
+            Reciprocal_Cycles();
+            break;
+        case 27:
+            Quadratic_Primes();
+            break;
+        case 28:
+            Number_Spiral_Diagonals();
+            break;
+        case 29:
+            Distinct_Powers();
+            break;
+        case 30:
+            Digit_5th_Powers();
+            break;
+        default:
+            Console.WriteLine("Not a menu option");
+            break;
+    }
+    Console.WriteLine("Would you like to try another?");
+    String? response = Console.ReadLine();
+    if (response == "n" || response == "N" || response == "No" || response == "no")
+        playAgain = false;
+}   
+Console.WriteLine("Thank you for playing");
+
+static void Multiples_of_3_or_5()
+{
+    Console.Clear();
+    Console.WriteLine(@"If we list all the natural numbers below 10 that are multiples of 
+ 3 or 5, we get 3,5,6,and 9. The sum of these multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.");
+
+    // so clearly we need to look at every number between 3 and 1000 (obviously 1 and 2 arent mutiples)
+    // and we need to have a running total. We'll start our sum at 0.
+    int sum = 0; 
+
+    // then we'll make a for loop.  It says below 1000, so < not <=
+    for (int i = 3; i<1000; i++)
+    {
+       // we need to see if the number is evenly divisible by 3 or 5, thus we can check if the modulo is zero (no remainder)
+       if (i%3 == 0 || i%5 ==0)
+          sum += i;
+    // that should take care of it..... 
+    }
+    Console.WriteLine($"The sum is {sum}");
+}
+static void Even_Fibonacci_Numbers()
+{
+    Console.WriteLine(@"Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 
+ 1 and 2, the first 10 terms will be:
+                1,2,3,5,8,13,21,34,55,89, ...
+
+By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.");
+
+// so first we need to create fibonacci numbers. 
+int prev2 = 1;
+int prev1 = 2;
+int currentFib = prev2 + prev1;
+
+int runningTotal = 2; // let's start by adding the 2 that we know is even. 
+// so while currentFib is < 4000000, we add the even ones.
+Console.Write("2 + ");
+while (currentFib < 4000000)
+{
+    prev2 = prev1;
+    prev1 = currentFib;
+    currentFib = prev2 + prev1;
+    // test if the current fib is even. If it is, add it
+    if (currentFib%2 == 0)
+    {
+        runningTotal += currentFib;
+        Console.Write ($"{currentFib} + ");
+    }
+}
+Console.WriteLine($"0 = {runningTotal}");
+
+}
+static void Large_Prime_Factor()
+{
+    Console.Clear();
+    Console.WriteLine(@"The prime factors of 13195 are 5,7,13, and 29.
+
+What is the largest prime factor of the number 600851475143?");
+
+    // first we need to get some prime numbers. 
+    List<int> primes = new List<int>(){2};
+    for (int i = 3; i< Math.Sqrt(600851465143); i++)
+    {
+        if (isPrime(i))
+            primes.Add(i);
+    }
+
+    // now we just need to find the largest of these that divides into the ugly number
+    int largest = 1; // everything can be divided by 1.
+    for (int i = 0; i< primes.Count; i ++)
+    {
+        if(600851475143 % primes[i] == 0)
+            largest = primes[i];
+    }
+    Console.WriteLine($"The largest prime factor of 600851475143 = {largest}");
+
+    static bool isPrime(int num)
+    {
+        for(int i = 2; i<= Math.Sqrt(num); i++ )
+            // if it is divisible by anything it is not prime
+            if(num%i == 0)
+                return false;
+        // if we make it through everything then
+        return true;
+    }
+}
+static void Large_Palindrome_Product()
+{
+    Console.Clear();
+    Console.WriteLine(@"A palindromic number reads the same both ways. The largest palindrome made from the product of two 
+2-digit numbers is 91 x 99 = 9009.
+.
+
+Find the largest palindrome made from the product of two 3-digit numbers.");
+    // then we need to loop through all the three digit 
+    Console.WriteLine($"9119 is Palendromic {isPalindromic(9119)}");
+    int longest = 0;
+    int a = 0;
+    int b = 0;
+    for (int i = 100; i < 1000; i++)
+    {
+        for (int j = 100; j < 1000; j++)
+        {
+            if(isPalindromic(i*j))
+            {
+                if(i*j > longest)
+                {
+                    longest = i*j;
+                    a = i;
+                    b = j;
+                }
+            }
+        }
+    }
+    Console.WriteLine($"Largest Palindrome {a} * {b} = {longest}");
+    // So first we need to make a method to check if a number is palindromic
+    static bool isPalindromic(int num)
+    {
+        List<char> numbers = new List<char>(num.ToString().ToCharArray());
+        for(int i = 0; i< numbers.Count/2; i++)
+        {
+            if(numbers[i] != numbers[numbers.Count-1-i])
+                return false;
+        }
+        return true;
+    }
+
+}
+static void Smallest_Mutiple()
+{
+    Console.Clear();
+    Console.WriteLine(@"2520 is the smallest number that can be divided by each of the numbers from 
+ 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
+    // so we'll need a while loop since we're not sure how big this might be. We'll use a long just in case
+    long number = 2;
+    while (!DivisibleByAll20(number))
+    {
+        // is there a faster method? Limiting it to even numbers cuts the time in half but still slow
+        number += 2;
+    }
+    Console.WriteLine($"{number} could be divided by 20 digits");
+
+    bool DivisibleByAll20(long num)
+    {
+        int count = 0;
+        // if count makes it to 20, it was divisible by them all. 
+        for(int i = 1; i<=20; i++)
+        {
+            if(num % i == 0)
+                count++;
+        }
+        //Console.WriteLine($"{num} could be divided by {count} digits");
+        if (count == 20)
+            return true;
+        return false;
+    }
+}
+static void Sum_Square_Difference()
+{
+    Console.WriteLine(@"The sum of the squares of the first ten natural numbers is,
+                1^2 + 2^2 + .... + 10^2 = 385
+
+The square of the sum of the first ten natural numbers is,
+                (1 + 2 + .... + 10) ^ 2 = 55^2 = 3025
+
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 
+3025 - 385 = 2640
+
+Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.");
+
+    // This one is pretty easy. 
+    // sum of the squares
+    long sumOfSquares = 0;
+    for (int i = 1; i<=100; i++)
+        sumOfSquares += (i*i);
+
+    // square of sums
+    long squareOfSums = 0;
+    for (int i = 1; i<=100; i++)
+        squareOfSums +=i;
+    squareOfSums = squareOfSums * squareOfSums;
+    Console.WriteLine($"The difference is {squareOfSums} - {sumOfSquares} = {Math.Abs(squareOfSums - sumOfSquares)}");
+    }
+static void Prime_10001st()
+{
+    Console.WriteLine(@"By listing the first six prime numbers: 2,3,5,7,11,and 13 
+we can see that the 6th prime is 13. 
+
+What is the 10001st prime number?");
+    // we've already created an is prime. So we can just check it to calculate the first 10001 prime numbers
+    Console.Clear();
+    int count = 0;
+    long checkDigit = 1;
+    while(count < 10001)
+    {
+        // increse check digit 
+        checkDigit++;
+        if(isPrime(checkDigit))
+            count ++;
+    }
+    Console.WriteLine($"The {count} prime number is {checkDigit}");
+    static bool isPrime(long num)
+    {
+        for (int i = 2; i<= Math.Sqrt(num); i++)
+        {
+            if(num%i == 0)
+                return false;
+        }
+        return true;
+    }
+}
+static void Largest_Product_in_a_Series()
+{
+    Console.WriteLine(@"The four adjacent digits in the 
+1000-digit number that have the greatest product are 9 x 9 x 8 x 9 = 5832.
+
+73167176531330624919225119674426574742355349194934
+96983520312774506326239578318016984801869478851843
+85861560789112949495459501737958331952853208805511
+12540698747158523863050715693290963295227443043557
+66896648950445244523161731856403098711121722383113
+62229893423380308135336276614282806444486645238749
+30358907296290491560440772390713810515859307960866
+70172427121883998797908792274921901699720888093776
+65727333001053367881220235421809751254540594752243
+52584907711670556013604839586446706324415722155397
+53697817977846174064955149290862569321978468622482
+83972241375657056057490261407972968652414535100474
+82166370484403199890008895243450658541227588666881
+16427171479924442928230863465674813919123162824586
+17866458359124566529476545682848912883142607690042
+24219022671055626321111109370544217506941658960408
+07198403850962455444362981230987879927244284909188
+84580156166097919133875499200524063689912560717606
+05886116467109405077541002256983155200055935729725
+71636269561882670428252483600823257530420752963450
+
+Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
+What is the value of this product?");
+
+    // first we need to break the 1000 digits into a list of 1000 digits
+    int maxAdjacent = 13;
+    List<int> numbers = new List<int>();
+    string BigNumber = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";
+    for (int i = 0; i<BigNumber.Length; i++)
+        numbers.Add(Convert.ToInt32(BigNumber[i].ToString()));
+    
+    long largest = 0; 
+    long product = 1;
+    for (int i = 0; i<numbers.Count-maxAdjacent; i++)
+    {
+        product = 1;
+        for(int j = i; j<i+maxAdjacent; j++)
+        {
+            product *= numbers[j];
+            
+        }
+       
+        if (product > largest)
+        {
+            for(int k = i; k< i + maxAdjacent; k++)
+                Console.Write($"{numbers[k]} x ");
+            largest = product;
+            Console.WriteLine($"= {largest}");
+        }
+    }
+    
+    
+
+
+}
+static void Special_Pythagorean_Triplet()
+{
+    Console.WriteLine(@"A Pythagorean triplet is a set of three natural numbers, a<b<c for which,
+                    a^2 + b^2 = c^2
+
+For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.");
+    // While not the most efficient, three loops of a/b/c will let us try all possible combinations
+    for(int a = 1; a<500; a++)
+    {
+        for(int b = a; b<500; b++)
+        {
+            for(int c=b; c<500; c++)
+            {
+                if(a*a + b*b == c*c)
+                    if(a + b + c == 1000)
+                        Console.WriteLine($"a = {a}, b = {b}, c = {c}, abc = {a*b*c}");
+            }
+        }
+    }
+}
+static void Summation_of_Primes()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Largest_Product_in_a_Grid()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Highly_Divisible_Triangular_Number()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Large_Sum()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Longest_Collatz_Sequence()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Lattice_Paths()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Power_Digit_Sum()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Number_Letter_Counts()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Maxium_Path_Sum_1()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Counting_Sundays()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Factorial_Digit_Sum()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Amicable_Numbers()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Names_Scores()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Non_Abundant_Sums()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Lexicographic_Permutations()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Digit_Fibonacci_numbers1000()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Reciprocal_Cycles()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Quadratic_Primes()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Number_Spiral_Diagonals()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Distinct_Powers()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}
+static void Digit_5th_Powers()
+{
+    Console.WriteLine("This hasn't been solved yet");
+}

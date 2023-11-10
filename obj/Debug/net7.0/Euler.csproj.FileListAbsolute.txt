@@ -1,0 +1,14 @@
+C:\Users\michael.lewellen\Euler\bin\Debug\net7.0\Euler.exe
+C:\Users\michael.lewellen\Euler\bin\Debug\net7.0\Euler.deps.json
+C:\Users\michael.lewellen\Euler\bin\Debug\net7.0\Euler.runtimeconfig.json
+C:\Users\michael.lewellen\Euler\bin\Debug\net7.0\Euler.dll
+C:\Users\michael.lewellen\Euler\bin\Debug\net7.0\Euler.pdb
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.AssemblyInfoInputs.cache
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.AssemblyInfo.cs
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.csproj.CoreCompileInputs.cache
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.dll
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\refint\Euler.dll
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.pdb
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\Euler.genruntimeconfig.cache
+C:\Users\michael.lewellen\Euler\obj\Debug\net7.0\ref\Euler.dll
